@@ -25,6 +25,14 @@ jobs:
           root_file: cv-job.tex
           latexmk_use_xelatex: false
 
+      # ── Space-sector CV: built BEFORE sync, so it uses only the curated
+      #    content (astrophysics/research entries, not the auto-synced tail). ──
+      - name: Compile space-sector CV
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv-space.tex
+          latexmk_use_xelatex: false
+
       # ── Sync repos (adds the personal-project long tail to the full CV) ──
       - name: Synchronise repos to CV
         run: python3 scripts/sync_repos.py
@@ -49,6 +57,7 @@ jobs:
           path: |
             main.pdf
             cv-job.pdf
+            cv-space.pdf
             resume.json
 
   release:
@@ -70,6 +79,7 @@ jobs:
           files: |
             main.pdf
             cv-job.pdf
+            cv-space.pdf
             resume.json
           make_latest: true
           generate_release_notes: false

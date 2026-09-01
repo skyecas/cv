@@ -66,6 +66,17 @@
 % website CV.
 \newif\iflean
 \leanfalse
+% Space mode: a space-sector-tailored variant. Reframes the summary/tagline,
+% surfaces astrodynamics & spaceflight work, retitles the projects section,
+% and themes the accent blue. Set \spacetrue in cv-space.tex; \spacefalse
+% (default) leaves the standard software-engineering CV untouched.
+\newif\ifspace
+\spacefalse
+% Show-extra: space-relevant academic content (astrophysics skills, research,
+% astro memberships, the EPQ) that the lean job CV drops but the space CV keeps.
+% Computed in body.tex as: full CV OR space CV (i.e. true unless lean & non-space).
+\newif\ifshowextra
+\showextratrue
 \newcommand{\email}{}
 \newcommand{\phone}{}
 \newcommand{\address}{}

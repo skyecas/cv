@@ -1,0 +1,28 @@
+% --------------------------------------------------------- %
+% SPACE-SECTOR CV -- a variant tailored for spaceflight,     %
+% mission-planning, flight-software, and astrodynamics roles. %
+% Shares all content with main.tex / cv-job.tex via body.tex; %
+% the \space flag reframes the summary and tagline, surfaces   %
+% astrodynamics & spaceflight work at the top of the projects  %
+% section, retitles that section, and themes the accent blue.  %
+% Built WITHOUT running the repo sync so it uses only curated   %
+% content (the astrophysics/research entries, not the auto-     %
+% synced personal-project long tail).                          %
+% --------------------------------------------------------- %
+
+\documentclass[]{cv}
+\usepackage{graphicx}
+\usepackage{pgfkeys}
+
+\title{CV}
+\author{\firstname \lastname \postnomial (\pronoun)}
+\date{July 2023}
+
+\begin{document}
+% Space-sector CV: lean & focused (like cv-job), but curated for the space
+% sector; space-relevant academic content is kept via the \showextra flag.
+\leantrue
+\spacetrue
+\input{body}
+
+\end{document}

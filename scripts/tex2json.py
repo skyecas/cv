@@ -119,7 +119,10 @@ def _resolve_lean(text: str) -> str:
     text = re.sub(
         r"\\iflean\b\s*(.*?)\\else\s*(.*?)\\fi\b", r"\2", text, flags=re.DOTALL
     )
-    return re.sub(r"\\(?:iflean|else|fi)\b\s*", "", text)
+    # Drop space-variant-only blocks entirely (\ifspace <x>\fi has no \else);
+    # the JSON mirrors the standard/full CV, not the space-sector variant.
+    text = re.sub(r"\\ifspace\b.*?\\fi\b", "", text, flags=re.DOTALL)
+    return re.sub(r"\\(?:iflean|ifspace|ifshowextra|else|fi)\b\s*", "", text)
 
 
 def strip_latex(text: str) -> str:
@@ -221,6 +224,11 @@ def split_date_range(date_str: str) -> tuple[str, str]:
 def parse_details_tex(filepath: str) -> dict:
     with open(filepath, "r") as f:
         content = f.read()
+
+    # Drop space-variant-only blocks (\ifspace ... \fi, no \else) before any
+    # command collection, so resume.json mirrors the standard/full CV rather
+    # than the space-sector variant's extra projects and reframed summary.
+    content = re.sub(r"\\ifspace\b.*?\\fi\b", "", content, flags=re.DOTALL)
 
     resume = {}
 

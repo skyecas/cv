@@ -27,5 +27,6 @@ __pycache__/
 *.swp
 main.pdf
 cv-job.pdf
+cv-space.pdf
 .opencode
 resume.json

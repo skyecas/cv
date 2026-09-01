@@ -1,8 +1,15 @@
 % --------------------------------------------------------- %
-% SHARED CV BODY -- included by main.tex (full) and          %
-% cv-job.tex (lean). Do not edit unless you know the layout. %
+% SHARED CV BODY -- included by main.tex (full), cv-job.tex   %
+% (lean), and cv-space.tex (lean, space-sector).             %
 % Lean-only differences are gated with \iflean ... \fi.      %
+% Space-relevant academic extras are gated with              %
+% \ifshowextra ... \fi (kept in full & space, dropped in     %
+% the lean DevOps job CV).                                    %
 % --------------------------------------------------------- %
+
+% showextra := full CV OR space CV (true unless lean and NOT space).
+% Set before \input{details} so the gates apply as content is registered.
+\ifspace\showextratrue\else\iflean\showextrafalse\else\showextratrue\fi\fi
 
 % Fetch user details
 \input{details}
@@ -32,11 +39,11 @@
 \sidebarsection{Publications}
 {\small\faIcon{newspaper}\hspace{1mm}\href{https://arxiv.org/abs/2511.14407}{ExoClock DR IV (2025)}}\par
 {\small\faIcon{graduation-cap}\hspace{1mm}2 Academic Theses}\par
-\iflean\else
+\ifshowextra
 {\small\faIcon{file-alt}\hspace{1mm}Extended Project (2017)}\par
 \fi
 
-\iflean\else
+\ifshowextra
 \sidebarsection{Talks \& Conferences}
 {\small\faIcon{comments}\hspace{1mm}\href{https://britastro.org/event/exoplanet-2023sep}{BAA Exoplanet Webinar (2023)}}\par
 {\small\faIcon{chalkboard-teacher}\hspace{1mm}\textit{Computational Modelling of TTVs}}\par
@@ -58,7 +65,14 @@
     \showsummary{Profile}
     \showcategory{briefcase}{Experience}{jobcompanies}{jobpositions}
     \showcategory{user-graduate}{Education}{educationschools}{educationcourses}
-    \showproject{book-open}{Projects and Publications}{projects}
+    % Space variant folds research & spaceflight into the projects heading.
+    % (Titles are passed as literal strings: \showproject's colour helper
+    % reads several leading tokens, so a single-macro title must be avoided.)
+    \ifspace
+        \showproject{book-open}{Projects, Research \& Spaceflight}{projects}
+    \else
+        \showproject{book-open}{Projects and Publications}{projects}
+    \fi
     \showmainmemberships{id-card}
     \showproject{trophy}{Awards}{awards}
 }

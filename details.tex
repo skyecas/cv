@@ -11,6 +11,10 @@
 \renewcommand{\pronoun}{She/They}
 \renewcommand{\tagline}{Software \& Distributed Systems Engineer}
 \renewcommand{\summary}{Software engineer specialising in distributed systems, platform engineering, and software supply-chain security. Sole owner of Canonical MAAS's CI platform and core maintainer of its Go Terraform provider; equally at home in Go services and Temporal orchestration or highly-available infrastructure-as-code. A First-Class MPhys astrophysicist who builds the systems other engineers rely on.}
+\ifspace
+\renewcommand{\tagline}{Spaceflight Software \& Mission-Systems Engineer}
+\renewcommand{\summary}{First-Class MPhys astrophysicist and software engineer, bridging spacecraft domain science and production-grade systems. Published exoplanet researcher (ExoClock DR~IV) with hands-on orbital-dynamics work: transit-timing inversion to recover the parameters of non-transiting planets, Kerbal Space Program flight computers executing real ascent, rendezvous, and landing guidance, and an orbital-mechanics mission-design simulation in progress. Professionally, sole architect of Canonical MAAS's CI and a Temporal-based distributed orchestration platform; the same constraint-driven scheduling and resilient automation that underpins spacecraft mission planning. Fellow of the Royal Astronomical Society.}
+\fi
 \renewcommand{\profilephoto}{profile.jpg}
 % contact
 \renewcommand{\email}{skyecasolw@gmail.com}
@@ -31,6 +35,12 @@
 \colorlet{sidebarcolour}{lightergrey}
 \colorlet{highlightcolour}{lilac}
 \colorlet{skillcolour}{lilac}
+% Space variant re-themes the accent to a deep-space blue (still within the
+% pastel blues palette); leaves the standard lilac untouched otherwise.
+\ifspace
+\colorlet{highlightcolour}{darkblue}
+\colorlet{skillcolour}{darkblue}
+\fi
 \renewcommand{\slimdates}{true}
 
 % Languages
@@ -45,7 +55,7 @@
 % Category used for grouping in resume.json; all skills shown together in sidebar
 % Mastery: 5=Expert/Senior, 4=Advanced, 3=Intermediate, 2=Mediocre, 1=Beginner
 
-\iflean\else
+\ifshowextra
 \skill{Physics}{Computational Modelling}{4}
 \skill{Physics}{Signal Processing}{4}
 \skill{Physics}{Statistical Analysis}{4}
@@ -83,7 +93,7 @@
 \skill{Backend \& Distributed Systems}{High Availability}{4}
 \skill{Backend \& Distributed Systems}{Supply-Chain Security (SBOM/CVE)}{4}
 
-\iflean\else
+\ifshowextra
 \skill{Web \& Data}{Jupyter}{3}
 \skill{Web \& Data}{NumPy / SciPy}{5}
 \fi
@@ -154,7 +164,7 @@
 \end{itemize}
 }
 
-\iflean\else
+\ifshowextra
 \addeducation{Peter Symonds College}{petersymonds_logo.jpeg}
 \addcourse{Peter Symonds College}
 {A-Level}{Physics (A), EPQ (A), Maths (B), Further Maths (D), AS-Chemistry (A)}
@@ -164,7 +174,9 @@
     \item Produced a Level 3 Extended Project Qualification to a high standard titled \href{https://skyecas.github.io/assets/pdf/EPQ.pdf}{`Is There A Possibility of Extrasolar Habitation?'}, assessing the habitability of the TRAPPIST-1 system and its seven Earth-sized exoplanets orbiting an M8V ultracool dwarf star.
 \end{itemize}
 }
+\fi
 
+\iflean\else
 \addeducation{Trafalgar School}{Trafalgar_school_logo.png}
 \addcourse{Trafalgar School}
 {GCSE}{9 GCSE's A* to B Including Science, Computer Science, Maths, and English}
@@ -176,7 +188,7 @@
 % \addmembership{Location}{logo path}
 % \addmembershiptitle{Location}{Title}{onelinedetauks}{Start}{end}{details}
 
-\iflean\else
+\ifshowextra
 \addmembership{British Astronomical Association}{baa_logo.jpeg}
 \addmembershiptitle{British Astronomical Association}
 {Member}{Exoplanet transit timing and observation}
@@ -197,7 +209,8 @@
 {2018}{2022}
 {}
 {https://www.iop.org/}
-
+\fi
+\ifshowextra
 \addmembership{European Astronomical Society}{eas_logo.jpeg}
 \addmembershiptitle{European Astronomical Society}
 {Member}{European astronomy and astrophysics research}
@@ -227,6 +240,24 @@
 % Projects and Publications
 
 % \addproject{name}{icon}{affiliation}{date}{details}{link}
+
+% Space-variant lead projects: astrodynamics & spaceflight work surfaced first.
+\ifspace
+\addproject{Orbital Logistics Sim (in development)}{proj}
+{Personal}{2026-08--Present}
+{A mission-design and interplanetary-logistics game (Aurora~4X crossed with Kerbal Space Program) built in Godot/GDScript, with a real astrodynamics core: route cargo between worlds to grow self-sustaining off-world settlements. Implements a Lambert solver for two-body transfers over Keplerian orbits, transfer-window search, and an engine-regime model that classifies each burn (impulsive, near-impulsive with Oberth gain, or multi-revolution low-thrust spiral) from the burn-time-to-orbital-period ratio, so the same engine transfers differently at Mercury than at Jupiter; plus low-thrust spiral optimisation, parking orbits, and round-trip planning.}
+{https://github.com/SkiylianSoftware/SpaceGame}
+
+\addproject{kOS Flight Computer}{code}
+{SkiylianSoftware}{2024-04}
+{A kOS-based spacecraft flight computer for Kerbal Space Program under the Real Solar System / Realism Overhaul mods, automating full-mission guidance: ascent steering, orbital rendezvous calculations, and landing sequences through scripted control logic.}
+{}
+
+\addproject{TransitProject / TTV Pipeline}{code}
+{Personal}{2022-02--2023-03}
+{A Python pipeline for exoplanet transit-timing-variation analysis: Markov Chain Monte Carlo orbital-parameter estimation (NumPy, SciPy, emcee) recovering the dynamical configuration of planetary systems and the parameters of non-transiting companion planets from TESS photometry.}
+{}
+\fi
 
 \addproject{Curriculum Vitae; LaTeX}{code}
 {Personal}{2026-05-18--Present}
@@ -283,7 +314,7 @@
 {Peer-reviewed paper in the ExoClock collaboration's Data Release IV, presenting a homogeneous catalogue of 620 updated exoplanet ephemerides. Contributed observational data and transit timing analysis from the TransitProject pipeline. Published on arXiv.}
 {https://arxiv.org/abs/2511.14407}
 
-\iflean\else
+\ifshowextra
 \addproject{`Variations on an Exoplanet Theme' Webinar}{talk}
 {British Astronomical Association}{2023-09}
 {Computational Modelling of Transit Timing Variations}
@@ -310,8 +341,10 @@
 \addhobby{Programming}{\iflean I build Fitbit watch faces, design my own programming languages, write flight computers for Kerbal Space Program, and tinker with esoteric hardware like balanced-ternary logic.\else I build watch faces for my FitBit Versa, design programming languages, write flight computers for Kerbal Space Program, and experiment with esoteric hardware designs like balanced ternary logic. The thing I'm most proud of is the shotcut automation pipeline that backs my YouTube workflow.\fi}
 \addhobby{Amateur Astronomy}{\iflean Exoplanet transit timing and observation through the ExoClock collaboration; catching a tiny dip in a star's brightness from my back garden never gets old.\else Exoplanet transit timing and observation through the ExoClock collaboration. There's something magical about catching a tiny dip in a star's brightness from my back garden, knowing I'm watching another world pass by.\fi}
 \addhobby{Writing}{\iflean Documentation, the occasional blog post, and hobbyist short fiction; I find that explaining something clearly is the best way to understand it myself.\else Be it Documentation or the occasional blog post. I find that explaining something clearly is the best way to make sure I understand it myself. But it's hobbyist writing too, I enjoy partaking in short novella and building out the world that lives within my mind.\fi}
-\iflean\else
+\ifshowextra
 \addhobby{Space \& Spaceflight}{Natural or artificial, if it's found outside of Earth's atmosphere, I probably like it. Exoplanets and deep space probes are my favourite. I keep an eye on every mission that leaves Earth.}
+\fi
+\iflean\else
 \addhobby{Reading}{I love a good book, but really wish I took the time to read more. My current favourites are Project Hail Mary and The Hydrogen Sonata; I have a soft spot for first-contact and post-scarcity sci-fi that explores how we might grow as a species.}
 \addhobby{Language Learning}{I'm learning Japanese. Currently at a beginner level and making slow but steady progress; it's a beautifully efficient language.}
 \addhobby{Tea}{Earl Grey is my favourite; no sugar, no milk. I do love a nice loose leaf brew from Whittards though, especially something fruity, and always stewed for just the perfect amount of time.}
