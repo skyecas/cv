@@ -645,6 +645,13 @@
     \ifnum\CV@dateint#1\@nil>\CV@today #3\else #2\fi
 }
 
+% \teamwithlogo{team name}{team logo path}
+% Renders a team name followed by a small team logo on the position line;
+% falls back to the name alone when no logo is supplied.
+\newcommand{\teamwithlogo}[2]{%
+    #1\ifexists{#2}{\,\raisebox{-0.22em}{\includegraphics[height=3.2mm]{#2}}}%
+}
+
 \newcommand{\addcompany}[2]{
     \appenddata{jobcompanies}{{#1}{#2}}
 }
