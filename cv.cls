@@ -634,6 +634,17 @@
     }{}
 }
 
+% --- Future-date guard -----------------------------------------------------
+% \ifreleased{YYYY-MM-DD}{shown}{hidden}
+% Compares the given date against the build date, so entries can be authored
+% ahead of time without leaking into the compiled PDF until their start date
+% has arrived. Pass a full YYYY-MM-DD date.
+\newcommand{\CV@today}{\number\numexpr\year*10000+\month*100+\day\relax}
+\def\CV@dateint#1-#2-#3\@nil{\number\numexpr#1*10000+#2*100+#3\relax}
+\newcommand{\ifreleased}[3]{%
+    \ifnum\CV@dateint#1\@nil>\CV@today #3\else #2\fi
+}
+
 \newcommand{\addcompany}[2]{
     \appenddata{jobcompanies}{{#1}{#2}}
 }

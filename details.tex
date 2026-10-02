@@ -102,11 +102,25 @@
 % \addcompany{Company name}{logo path}
 % \addposition{Company name}{Role}{team}{Start}{end}{details}
 
-\addcompany{Canonical}{canonical_logo.jpeg}
-\addposition{Canonical}
-{Software Engineer}{Canonical MAAS (Metal-As-A-Service)}
-{2023-05}{}
+% Pre-authored; hidden from the PDF until its start date arrives (see \ifreleased).
+\ifreleased{2026-10-19}{%
+\addcompany{National Institute of Teaching}{niot_logo.png}
+\addposition{National Institute of Teaching}
+{Senior Software Engineer}{Teacher Education Dataset (TED)}
+{2026-10}{}
 {%
+\begin{itemize}[leftmargin=*, labelsep=-0.1em, noitemsep]
+    \item Building and maintaining the technical infrastructure behind the \textbf{Teacher Education Dataset (TED)}, a national data and research initiative generating evidence on how teachers develop and what makes teaching impactful across the education system.
+    \item Designing \textbf{secure, scalable, and reliable} systems and data pipelines for robust analysis of education and teacher-development data, handling sensitive data within trusted, secure analytical environments.
+    \item Applying software-engineering and \textbf{DevOps} best practice (Python, Linux, Docker, CI/CD) to deliver well-tested, maintainable solutions and reproducible, transparent research workflows.
+    \item Contributing to architectural decisions, platform design, developer experience, monitoring, and software quality in a multidisciplinary team of engineers and researchers.
+\end{itemize}
+}
+}{}
+
+\addcompany{Canonical}{canonical_logo.jpeg}
+% Shared details; end date flips from Present to 2026-10 once the leaving date passes.
+\long\def\CanonicalSEdetails{%
 \begin{itemize}[leftmargin=*, labelsep=-0.1em, noitemsep]
     \item \textbf{Sole owner and architect} of the MAAS team's entire Jenkins CI platform; \textbf{130+ pipeline jobs} generated from \textbf{39 reusable templates} across \textbf{42 product repositories}, defined as code in $\sim$17k lines of Python, Groovy, and YAML. Designed the templated job system, automated bug backporting from merge proposals (lander/reviewer polling every two minutes), drove the Launchpad-to-GitHub migration, and introduced testflinger-driven bare-metal hardware testing.
     \item Architected a \textbf{Temporal-based distributed orchestration system} that builds, tests, and promotes MAAS OS images at scale, engineering production-grade resilience (activity heartbeats, execution timeouts, orphaned-workflow termination, and worker drain/health monitoring) and a custom workflow scheduler to replace unreliable SDK scheduling.
@@ -116,6 +130,9 @@
     \item Contributed idiomatic Go to the \href{https://github.com/canonical/gomaasclient}{gomaasclient} API client; interface-segregated endpoint design and defensive deserialization (multi-format timestamp parsing, numeric-type coercion) against a live REST API.
 \end{itemize}
 }
+\ifreleased{2026-10-09}
+  {\addposition{Canonical}{Software Engineer}{Canonical MAAS (Metal-As-A-Service)}{2023-05}{2026-10}{\CanonicalSEdetails}}
+  {\addposition{Canonical}{Software Engineer}{Canonical MAAS (Metal-As-A-Service)}{2023-05}{}{\CanonicalSEdetails}}
 
 \addposition{Canonical}
 {Associate Software Engineer}{Canonical MAAS (Metal-As-A-Service)}
