@@ -649,7 +649,7 @@
 % Renders a team name followed by a small team logo on the position line;
 % falls back to the name alone when no logo is supplied.
 \newcommand{\teamwithlogo}[2]{%
-    #1\ifexists{#2}{\,\raisebox{-0.22em}{\includegraphics[height=3.2mm]{#2}}}%
+    #1\ifexists{#2}{\,\raisebox{-0.14em}{\includegraphics[height=2.7mm]{#2}}}%
 }
 
 \newcommand{\addcompany}[2]{
