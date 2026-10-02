@@ -9,8 +9,8 @@
 \renewcommand{\lastname}{Owen-Lloyd-Walters}
 \renewcommand{\postnomial}{MPhys MInstP FRAS}
 \renewcommand{\pronoun}{She/They}
-\renewcommand{\tagline}{Software \& Distributed Systems Engineer}
-\renewcommand{\summary}{Software engineer specialising in distributed systems, platform engineering, and software supply-chain security. Sole owner of Canonical MAAS's CI platform and core maintainer of its Go Terraform provider; equally at home in Go services and Temporal orchestration or highly-available infrastructure-as-code. A First-Class MPhys astrophysicist who builds the systems other engineers rely on.}
+\renewcommand{\tagline}{\ifreleased{2026-10-19}{Senior Software Engineer}{Software \& Distributed Systems Engineer}}
+\renewcommand{\summary}{\ifreleased{2026-10-19}{Senior Software Engineer specialising in distributed systems, platform engineering, and software supply-chain security. Now building the secure, scalable data infrastructure behind the National Institute of Teaching's Teacher Education Dataset, following four years as sole owner of Canonical MAAS's CI platform and core maintainer of its Go Terraform provider. A First-Class MPhys astrophysicist who builds the systems other engineers rely on.}{Software engineer specialising in distributed systems, platform engineering, and software supply-chain security. Sole owner of Canonical MAAS's CI platform and core maintainer of its Go Terraform provider; equally at home in Go services and Temporal orchestration or highly-available infrastructure-as-code. A First-Class MPhys astrophysicist who builds the systems other engineers rely on.}}
 \ifspace
 \renewcommand{\tagline}{Space Systems \& Mission-Software Engineer}
 \renewcommand{\summary}{Software engineer with a First-Class MPhys in astrophysics, specialising in the distributed systems, orchestration, and automation that ground-segment and mission-operations software are built on. At Canonical, sole architect of MAAS's CI platform and a Temporal-based orchestration engine: durable, constraint-driven scheduling and resilient long-running workflows, the same problem shape as spacecraft activity planning and operations automation. Backed by deep space-domain grounding, a published exoplanet researcher (ExoClock DR~IV) whose orbital-dynamics work runs from transit-timing inversion to Kerbal Space Program flight computers and an in-progress mission-design simulation with a Lambert-solver core. Delivers in distributed, remote-first teams. Fellow of the Royal Astronomical Society.}
@@ -88,6 +88,7 @@
 \skill{DevOps \& Cloud}{YAML}{3}
 
 \skill{Backend \& Distributed Systems}{Distributed Systems}{4}
+\skill{Backend \& Distributed Systems}{Data Pipelines}{3}
 \skill{Backend \& Distributed Systems}{Temporal}{4}
 \skill{Backend \& Distributed Systems}{Event-Driven Architecture}{3}
 \skill{Backend \& Distributed Systems}{High Availability}{4}
@@ -118,7 +119,7 @@
 }
 }{}
 
-\addcompany{Canonical}{canonical_logo.jpeg}
+\addcompany{Canonical}{canonical_logo.jpeg}[maas_logo.png]
 % Shared details; end date flips from Present to 2026-10 once the leaving date passes.
 \long\def\CanonicalSEdetails{%
 \begin{itemize}[leftmargin=*, labelsep=-0.1em, noitemsep]
@@ -131,11 +132,11 @@
 \end{itemize}
 }
 \ifreleased{2026-10-09}
-  {\addposition{Canonical}{Software Engineer}{\teamwithlogo{Canonical MAAS (Metal-As-A-Service)}{maas_logo.png}}{2023-05}{2026-10}{\CanonicalSEdetails}}
-  {\addposition{Canonical}{Software Engineer}{\teamwithlogo{Canonical MAAS (Metal-As-A-Service)}{maas_logo.png}}{2023-05}{}{\CanonicalSEdetails}}
+  {\addposition{Canonical}{Software Engineer}{MAAS (Metal-As-A-Service)}{2023-05}{2026-10}{\CanonicalSEdetails}}
+  {\addposition{Canonical}{Software Engineer}{MAAS (Metal-As-A-Service)}{2023-05}{}{\CanonicalSEdetails}}
 
 \addposition{Canonical}
-{Associate Software Engineer}{\teamwithlogo{Canonical MAAS (Metal-As-A-Service)}{maas_logo.png}}
+{Associate Software Engineer}{MAAS (Metal-As-A-Service)}
 {2022-06}{2023-05}
 {%
 \begin{itemize}[leftmargin=*, labelsep=-0.1em, noitemsep]
@@ -311,6 +312,7 @@
 {\iflean Juju charmed operators that run MAAS; built the cluster-coordinated, S3-backed backup and restore subsystem and MAAS HAProxy TCP routing.\else Significant contributor to the Juju charmed operators that run MAAS. Built the cluster-coordinated, S3-backed backup and restore subsystem (streamed tar archiving, version verification, cross-charm coordination) and implemented MAAS HAProxy TCP routing alongside the region-and-rack charm consolidation.\fi}
 {https://github.com/canonical/maas-charms}
 
+\iflean\else
 \addproject{MAAS Anvil}{code}
 {Canonical}{2024-06--2026-05}
 {\iflean A snap that deploys highly-available Charmed MAAS on the Juju/Terraform Sunbeam framework; added keepalived virtual-IP failover, S3-backed PostgreSQL backups, and role-aware rolling charm upgrades.\else Major contributor to MAAS Anvil, the snap that deploys and manages highly-available Charmed MAAS atop the Juju and Terraform Sunbeam framework. Introduced keepalived virtual-IP failover layered on the HAProxy provider with VIP validation and ordered Terraform/Juju step placement; built an S3 relation for the region charm with Juju-secret-gated PostgreSQL backups; and implemented a role-aware rolling charm upgrade system (region first, then database and agents) with a cluster-refresh command. Added a standalone juju-login flow to decouple authentication from Sunbeam internals, persisted and replayed installer answers for non-interactive deployments, and stripped unwanted upstream Sunbeam coupling to stabilise the fork, backed by deployment and unit test coverage.\fi}
@@ -320,6 +322,7 @@
 {Canonical}{2024-06--2025-05}
 {\iflean Go client library for the MAAS REST API, with an interface-segregated api/entity/client architecture; powers the Terraform provider.\else Contributor to the Go client library underpinning MAAS tooling and the Terraform provider. Added typed CRUD resources across an interface-segregated api/entity/client architecture and hardened deserialization against a live REST API; multi-format timestamp parsing, numeric-type coercion, and snake\_case operation naming.\fi}
 {https://github.com/canonical/gomaasclient}
+\fi
 
 \addproject{Skiylia}{code}
 {Personal}{2022-12-11--Present}
@@ -360,7 +363,7 @@
 
 % hobbies and interests
 \addhobby{Gaming}{\iflean Factorio, Stellaris, Transport Fever, and Kerbal Space Program; there's something satisfying about optimising a sprawling factory or planning a multi-planetary slingshot.\else I Love Factorio, Stellaris, Transport Fever, modded Minecraft, and Kerbal Space Program; the latter three feature heavily in my YouTube content creation. There's something satisfying about optimising a factory or planning and executing a multi-planetary slingshot.\fi}
-\addhobby{Programming}{\iflean I build Fitbit watch faces, design my own programming languages, write flight computers for Kerbal Space Program, and tinker with esoteric hardware like balanced-ternary logic.\else I build watch faces for my FitBit Versa, design programming languages, write flight computers for Kerbal Space Program, and experiment with esoteric hardware designs like balanced ternary logic. The thing I'm most proud of is the shotcut automation pipeline that backs my YouTube workflow.\fi}
+\addhobby{Programming}{\iflean I build a space-flight game in Godot with a real orbital-mechanics core, designed my own bytecode programming language, and write Python automation for my YouTube channel and a weather-aware streaming radio.\else I'm building a mission-design space game in Godot/GDScript with a real orbital-mechanics core (Lambert solvers and transfer-window search), designed my own bytecode programming language (Skiylia), and write Python automation that runs my YouTube channel and a weather-aware streaming radio. I still tinker with Fitbit clock-faces and esoteric hardware like balanced-ternary logic.\fi}
 \addhobby{Amateur Astronomy}{\iflean Exoplanet transit timing and observation through the ExoClock collaboration; catching a tiny dip in a star's brightness from my back garden never gets old.\else Exoplanet transit timing and observation through the ExoClock collaboration. There's something magical about catching a tiny dip in a star's brightness from my back garden, knowing I'm watching another world pass by.\fi}
 \addhobby{Writing}{\iflean Documentation, the occasional blog post, and hobbyist short fiction; I find that explaining something clearly is the best way to understand it myself.\else Be it Documentation or the occasional blog post. I find that explaining something clearly is the best way to make sure I understand it myself. But it's hobbyist writing too, I enjoy partaking in short novella and building out the world that lives within my mind.\fi}
 \ifshowextra

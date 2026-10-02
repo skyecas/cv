@@ -515,6 +515,7 @@
     \begin{addmargin}[0mm]{0mm}%
         \ifexistselse{\getdata[#1+1]{#2}}{}{\vspace{0.6em}}{\color{grey}\Large\getdata[#1]{#2}%
         \ifexistselse{\getdata[#1+1]{#2}}{\hfill%
+            \ifexists{\getdata[#1+2]{#2}}{\raisebox{-\iconoffset}[\iconbox]{\includegraphics[height=\iconheight]{\getdata[#1+2]{#2}}}\hspace{0.45em}}%
             \raisebox{-\iconoffset}[\iconbox]{\includegraphics[height=\iconheight]{\getdata[#1+1]{#2}}}\vspace{-\iconoffset}%
         }{%
             \par%
@@ -551,10 +552,10 @@
         \saveentrycolour
         \iconsection{\faIcon{#1}}{#2}%
         \vspace{0.3em}%
-        \ifthenelse{\getlength{#3} < 3}{%
+        \ifthenelse{\getlength{#3} < 4}{%
             \oneinstance{1}{#3}{#4}%
         }{%
-            \foreach \c in {1,3,...,\getlength{#3}} {%
+            \foreach \c in {1,4,...,\getlength{#3}} {%
                 \oneinstance{\c}{#3}{#4}%
             }%
         }%
@@ -645,23 +646,18 @@
     \ifnum\CV@dateint#1\@nil>\CV@today #3\else #2\fi
 }
 
-% \teamwithlogo{team name}{team logo path}
-% Renders a team name followed by a small team logo on the position line;
-% falls back to the name alone when no logo is supplied.
-\newcommand{\teamwithlogo}[2]{%
-    #1\ifexists{#2}{\,\raisebox{-0.14em}{\includegraphics[height=2.7mm]{#2}}}%
-}
-
-\newcommand{\addcompany}[2]{
-    \appenddata{jobcompanies}{{#1}{#2}}
+\NewDocumentCommand{\addcompany}{m m O{}}{
+    % \addcompany{Company}{company logo}[team logo]
+    \appenddata{jobcompanies}{{#1}{#2}{#3}}
 }
 \newcommand{\addposition}[6]{
     % \addposition{Company}{Role}{Start}{end}{details}
     \appenddata{jobpositions}{{#1}{#2}{#3}{#4}{#5}{#6}}
 }
 
-\newcommand{\addeducation}[2]{
-    \appenddata{educationschools}{{#1}{#2}}
+\NewDocumentCommand{\addeducation}{m m O{}}{
+    % \addeducation{School}{logo}[secondary logo]
+    \appenddata{educationschools}{{#1}{#2}{#3}}
 }
 \newcommand{\addcourse}[6]{
     % \addcourse{School}{grade}{course}{Start}{end}{details}
